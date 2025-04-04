@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block title %}Reserve Parking Spot{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{{ url_for('static', filename='images/reserve-bg.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white; /* Ensure text is readable on the background */
+    }
+
+    .reserve-container {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .reserve-container h1 {
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .reserve-container label {
+        display: block;
+        margin-bottom: 5px;
+        color: white;
+        text-align: left;
+    }
+
+    .reserve-container input, .reserve-container select {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .reserve-container button {
+        background-color: #1e90ff;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .reserve-container button:hover {
+        background-color: #4682b4;
+    }
+
+    .back-link {
+        display: inline-block;
+        margin-top: 15px;
+        color: #1e90ff;
+        text-decoration: none;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="reserve-container">
+    <h1>Reserve a Parking Spot</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            <label for="license_plate">{{ form.license_plate.label }}</label>
+            {{ form.license_plate }}
+        </div>
+        <div>
+            <label for="parking_spot">{{ form.parking_spot.label }}</label>
+            {{ form.parking_spot }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+    <a class="back-link" href="{{ url_for('parking') }}">Back to Parking Spots</a>
+</div>
+{% endblock %}

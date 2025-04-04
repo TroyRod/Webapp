@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Login - Always Available{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{{ url_for('static', filename='images/login.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white; /* Ensure text is readable on the background */
+    }
+
+    .login-container {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 300px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .login-container h2 {
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .login-container p {
+        margin-top: 10px;
+        color: white;
+    }
+
+    .login-link {
+        color: #1e90ff;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="login-container">
+    <h2>Login to Your Account</h2>
+    {% for mesg in get_flashed_messages() %}
+        <p class="flash-message">{{ mesg }}</p>
+    {% endfor %}
+    {{ wtf.quick_form(form, button_map={'submit': 'primary'}) }}
+    <p>
+        Don't have an account? 
+        <a class="login-link" href="{{ url_for('register') }}">Register here</a>
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Register{% endblock %}
+
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand text-white" href="/">Always Available</a> <!-- Consistent branding -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link text-white" href="/">Home</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/login/">Login</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/register/">Register</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/about/">About</a></li>
+                <li class="nav-item"><a class="nav-link text-white" href="/admin/tools/">Admin Tools</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{{ url_for('static', filename='images/register-bg.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        height: 100vh;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white; /* Ensure text is readable on the background */
+    }
+
+    .register-container {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+        width: 400px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .register-container h1 {
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .register-container p {
+        margin-top: 10px;
+        color: white;
+    }
+
+    .login-link {
+        color: #1e90ff;
+        text-decoration: none;
+    }
+
+    .login-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="register-container">
+    <h1>Create Your Account</h1>
+    <p>Join us today and start your journey with Always Available!</p> <!-- Updated text -->
+    {% for field, errors in form.errors.items() %}
+        {% for error in errors %}
+            <div class="alert alert-danger">{{ error }}</div>
+        {% endfor %}
+    {% endfor %}
+    {{ wtf.quick_form(form) }}
+    <p>
+        Already registered? 
+        <a class="login-link" href="{{ url_for('login') }}">Click here to login</a>
+    </p>
+</div>
+{% endblock %}

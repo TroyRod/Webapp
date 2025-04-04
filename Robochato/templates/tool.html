@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Tools - Always Available{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{{ url_for('static', filename='images/admin-bg.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        color: white; /* Ensure text is readable on the background */
+    }
+
+    .card {
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background for cards */
+        color: white; /* White text for readability */
+    }
+
+    .card .btn {
+        background-color: #007bff; /* Bootstrap primary color */
+        border: none;
+    }
+
+    .card .btn:hover {
+        background-color: #0056b3; /* Darker shade on hover */
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Admin Tools</h1>
+        <p class="lead">Welcome, Admin! Use the tools below to manage the application effectively.</p>
+    </div>
+    <div class="row g-4">
+        <!-- Manage Users -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Users</h5>
+                    <p class="card-text">View, edit, or delete user accounts.</p>
+                    <a href="/admin/users" class="btn btn-primary">Go to User Management</a>
+                </div>
+            </div>
+        </div>
+        <!-- View Logs -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">View Logs</h5>
+                    <p class="card-text">Access application logs for debugging and monitoring.</p>
+                    <a href="/admin/logs" class="btn btn-primary">View Logs</a>
+                </div>
+            </div>
+        </div>
+        <!-- System Settings -->
+        <div class="col-md-4">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h5 class="card-title">System Settings</h5>
+                    <p class="card-text">Update application settings and configurations.</p>
+                    <a href="/admin/settings" class="btn btn-primary">Edit Settings</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

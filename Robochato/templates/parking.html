@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Parking{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: url("{{ url_for('static', filename='images/parking-lot.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+        margin: 0;
+        padding: 0;
+        color: white; /* Adjust text color for better contrast */
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
+
+    h1, h2 {
+        color: white; /* Ensure headings are readable */
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .grid-item {
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.2s;
+    }
+
+    .grid-item.available {
+        background-color: #1e90ff;
+        color: white;
+    }
+
+    .grid-item.unavailable {
+        background-color: #d9534f;
+        color: white;
+        cursor: not-allowed;
+    }
+
+    .grid-item.available:hover {
+        background-color: #4682b4;
+        transform: scale(1.05);
+    }
+
+    .reserve-link {
+        display: inline-block;
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #28a745;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+
+    .reserve-link:hover {
+        background-color: #218838;
+    }
+</style>
+
+<div class="container">
+    <h1>Available Parking Spots</h1>
+
+    <h2>Lot 1</h2>
+    <div class="grid">
+        {% for spot in lot1 %}
+        <div class="grid-item {% if spot.available %}available{% else %}unavailable{% endif %}">
+            {{ spot.spot }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Lot 2</h2>
+    <div class="grid">
+        {% for spot in lot2 %}
+        <div class="grid-item {% if spot.available %}available{% else %}unavailable{% endif %}">
+            {{ spot.spot }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Lot 3</h2>
+    <div class="grid">
+        {% for spot in lot3 %}
+        <div class="grid-item {% if spot.available %}available{% else %}unavailable{% endif %}">
+            {{ spot.spot }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <h2>Lot 4</h2>
+    <div class="grid">
+        {% for spot in lot4 %}
+        <div class="grid-item {% if spot.available %}available{% else %}unavailable{% endif %}">
+            {{ spot.spot }}
+        </div>
+        {% endfor %}
+    </div>
+
+    <a class="reserve-link" href="{{ url_for('reserve') }}">Reserve a Spot</a>
+</div>
+{% endblock %}
